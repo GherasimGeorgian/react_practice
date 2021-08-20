@@ -3,6 +3,8 @@ import Todos from './Todos'
 import AddTodo from './AddTodo';
 import React, { Component } from 'react';
 import axios from 'axios'
+import {Link} from 'react-router-dom'
+import Pokeball from '../pokeball.png'
 class Home extends Component{
 
     componentDidMount(){
@@ -42,10 +44,13 @@ class Home extends Component{
         const postList = this.state.posts.length ? (
             this.state.posts.map(post=>{
                 return (<div className="post card" key={post.id}>
+                            <img src={Pokeball} alt="a pokeball"/>
                             <div className="card-content">
-                                <span clasName="card-title">
-                                    {post.title}
-                                </span>
+                                <Link to={'/' + post.id}>
+                                    <span clasName="card-title">
+                                        {post.title}
+                                    </span>
+                                </Link>
                                 <p>
                                     {post.body}
                                 </p>
@@ -59,7 +64,7 @@ class Home extends Component{
             </div>
         )
         return(
-            <div className="todo-app container">
+            <div className="todo-app-home container">
             <h1 className='center blue-text' >ToDo's</h1>
                 <Todos todos={this.state.todos} deleteTodo={this.deleteTodo}/>
                 <AddTodo  addTodo={this.addTodo}/>
