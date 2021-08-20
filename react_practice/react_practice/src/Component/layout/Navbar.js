@@ -1,10 +1,9 @@
 import React from 'react'
 import { Link,NavLink,withRouter } from 'react-router-dom'
+import SignedInLinks from './SignedInLinks'
+import SignedOutLinks from './SignedOutLinks'
 const Navbar =  (props) =>{
-    //nu avem props de aceea folosim withRouter la export
-    // setTimeout(() => {
-    //          props.history.push('/about')
-    //      },2000);
+    
     return(
         <nav className="nav.nav-warpper.red.darken-3">
             <div className="container">
@@ -13,6 +12,9 @@ const Navbar =  (props) =>{
                     <li><Link to="/">Home</Link></li>
                     <li><NavLink to="/about">About</NavLink></li>
                     <li><NavLink to="/contact">Contact</NavLink></li>
+                    
+                    <SignedInLinks/>
+                    <SignedOutLinks/>
                 </ul>
             </div>
         </nav>
