@@ -1,31 +1,45 @@
 import React,{Component} from 'react'
-import axios from 'axios'
+import {connect} from 'react-redux'
+// import axios from 'axios'
 class Post extends Component{
 
 
-    state = {
-        post:[]
-    }
+    // state = {
+    //     post:null
+    // }
 
-    componentDidMount(){
-        console.log(this.props)
-        let id= this.props.match.params.post_id;
-        axios.get('https://jsonplaceholder.typicode.com/posts/' + id)
-            .then(res =>{
-                this.setState({
-                    post:res.data
-                })
-                console.log(res)
-            })
+    // componentDidMount(){
+    //     console.log(this.props)
+    //     let id= this.props.match.params.post_id;
+    //     axios.get('https://jsonplaceholder.typicode.com/posts/' + id)
+    //         .then(res =>{
+    //             this.setState({
+    //                 post:res.data
+    //             })
+    //             console.log(res)
+    //         })
         
+    // }
+    handleClickDeletePost = () =>{
+        this.props.deletePost(this.props.post.id);
+        //redirect to homepage
+        this.props.history.push('/')
     }
 
     render(){
 
-        const post = this.state.post ? (
+        
+
+        console.log(this.props)
+        const post = this.props.post ? (
             <div className="post">
-                <h4 className="center">{this.state.post.title}</h4>
-                <p>{this.state.post.body}</p>
+                <h4 className="center">{this.props.post.title}</h4>
+                <p>{this.props.post.body}</p>
+                <div className="center">
+                    <button className="btn grey" onClick={this.handleClickDeletePost}>
+                        Delete Post
+                    </button>
+                </div>
             </div>
         ) 
         : 
@@ -42,5 +56,18 @@ class Post extends Component{
         )
     }
 }
+const mapStateToProps = (state,ownProps) => {
+    //accesam post_id din link
+    let id = ownProps.match.params.post_id;
+    return {
+        post:state.posts.find(post => post.id === id)
+    } 
+}
 
-export default Post
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        deletePost:(id) => {dispatch({type:'DELETE_POST',id:id})}
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Post)

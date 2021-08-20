@@ -2,27 +2,28 @@
 import Todos from './Todos'
 import AddTodo from './AddTodo';
 import React, { Component } from 'react';
-import axios from 'axios'
+// import axios from 'axios'
 import {Link} from 'react-router-dom'
 import Pokeball from '../pokeball.png'
+import {connect} from 'react-redux'
 class Home extends Component{
 
-    componentDidMount(){
-        axios.get('https://jsonplaceholder.typicode.com/posts')
-            .then(res =>{
-                console.log(res)
-                this.setState({
-                    posts:res.data.slice(0,10)
-                })
-            })
-    }
+    // componentDidMount(){
+    //     axios.get('https://jsonplaceholder.typicode.com/posts')
+    //         .then(res =>{
+    //             console.log(res)
+    //             this.setState({
+    //                 posts:res.data.slice(0,10)
+    //             })
+    //         })
+    // }
 
     state = {
         todos:[
           {id:1,content:'buy some milk'},
           {id:2,content:'play mario kart'}
         ],
-        posts:[]
+        //posts:[]
       }
       deleteTodo = (id) => {
         const todos = this.state.todos.filter(todo => {
@@ -40,9 +41,10 @@ class Home extends Component{
         })
       }
     render(){
-        
-        const postList = this.state.posts.length ? (
-            this.state.posts.map(post=>{
+        console.log(this.props)
+        const {posts } = this.props;
+        const postList = posts.length ? (
+            posts.map(post=>{
                 return (<div className="post card" key={post.id}>
                             <img src={Pokeball} alt="a pokeball"/>
                             <div className="card-content">
@@ -74,4 +76,10 @@ class Home extends Component{
     }
 }
 
-export default Home
+const mapStateToProps = (state) =>{
+    return{
+         posts:state.posts
+    }
+}
+
+export default connect(mapStateToProps)(Home)
