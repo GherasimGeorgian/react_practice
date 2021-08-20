@@ -41,7 +41,7 @@ class Home extends Component{
         })
       }
     render(){
-        console.log(this.props)
+         console.log(this.props)
         const {posts } = this.props;
         const postList = posts.length ? (
             posts.map(post=>{
@@ -78,7 +78,7 @@ class Home extends Component{
 
 const mapStateToProps = (state) =>{
     return{
-         posts:state.posts
+         posts:state.postR.posts
     }
 }
 

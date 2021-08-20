@@ -15,6 +15,7 @@ import Dashboard from './Component/dashboard/Dashboard'
 import { ProjectDetails } from './Component/projects/ProjectDetails';
 import {SignIn} from './Component/auth/SignIn'
 import {SignUp} from './Component/auth/SignUp'
+import {CreateProject} from './Component/projects/CreateProject'
 class App extends Component {
  
   
@@ -30,6 +31,7 @@ class App extends Component {
           <Route path='/dashboard' component={Dashboard}/>
           <Route path='/signin' component={SignIn} />
           <Route path='/signup' component={SignUp} />
+          <Route path='/create' component={CreateProject}/>
           <Route exact path='/:post_id' component={Post} />
           <Route exact path='/project/:id' component={ProjectDetails} />
          

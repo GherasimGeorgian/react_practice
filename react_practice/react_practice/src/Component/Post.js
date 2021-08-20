@@ -61,7 +61,7 @@ const mapStateToProps = (state,ownProps) => {
     //accesam post_id din link
     let id = ownProps.match.params.post_id;
     return {
-        post:state.posts.find(post => post.id === id)
+        post:state.postR.posts.find(post => post.id === id)
     } 
 }
 
