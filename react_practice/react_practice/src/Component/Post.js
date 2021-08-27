@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import {connect} from 'react-redux'
-import {deletePost} from '../actions/postActions'
+import {deletePost} from '../store/actions/postActions'
 // import axios from 'axios'
 class Post extends Component{
 

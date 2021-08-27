@@ -1,4 +1,3 @@
-
 import './App.css';
 import Welcome from './Component/AppX'
 import Ninjas from './Component/Ninjas';
@@ -15,7 +14,7 @@ import Dashboard from './Component/dashboard/Dashboard'
 import { ProjectDetails } from './Component/projects/ProjectDetails';
 import {SignIn} from './Component/auth/SignIn'
 import {SignUp} from './Component/auth/SignUp'
-import {CreateProject} from './Component/projects/CreateProject'
+import CreateProject from './Component/projects/CreateProject';
 class App extends Component {
  
   
